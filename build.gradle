@@ -11,10 +11,20 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+jar {
+    archiveBaseName = "shell-launcher-plugin"
+}
+
 gradlePlugin {
     plugins {
         shellLauncherPlugin {
-            id = "buddha.gradle.shell-launcher"
+            id = "buddha.gradle.shell-launcher-plugin"
             implementationClass = "buddha.gradle.ShellLauncherPlugin"
         }
     }
