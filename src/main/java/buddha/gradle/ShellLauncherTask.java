@@ -111,6 +111,9 @@ public class ShellLauncherTask extends DefaultTask {
         }
     }
 
+    /**
+     * 生成Windows系统的bat启动脚本
+     */
     private void generateWinShellLauncher() {
         Objects.requireNonNull(appName, "'appName' is null");
         Objects.requireNonNull(mainClass, "'mainClass' is null");
@@ -140,6 +143,8 @@ public class ShellLauncherTask extends DefaultTask {
                     .append(this.libDir).append("\\").append(jar).append("\n");
         }
         batContent.append("::---------------------------------------- Start Application --------------------------------------\n");
+        // 这里用来切换jvm的工作目录
+        batContent.append("CD \"%APP_HOME%\"").append("\n");
         batContent.append("\"%JAVA_EXE%\"").append(" ^\n")
                 .append("-cp \"%CLASS_PATH%\" ^\n")
                 .append("%APP_JVM_ARGS% ^\n")
